@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <AssemblyTitle>OdeyTech.WPF.Common</AssemblyTitle>
+    <Company>Andrii Odeychuk</Company>
+    <Product>OdeyTech.WPF.Common</Product>
+    <Copyright>Copyright © $(Company) 2023.</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AssemblyVersion>0.0.166</AssemblyVersion>
+    <Authors>$(Company)</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Description>Package provides a set of base classes that are essential for building views, view models in WPF applications. Additionally, the package includes a collection of utility functions that offer valuable assistance during WPF application development. By leveraging the functionalities provided by this package, developers can enhance their productivity and streamline the creation of robust and feature-rich WPF applications.</Description>
+    <RepositoryUrl>https://github.com/anodeychuk/OdeyTech.WPF.Common</RepositoryUrl>
+    <Version>$(AssemblyVersion)</Version>
+    <PackageProjectUrl>https://github.com/anodeychuk/OdeyTech.WPF.Common</PackageProjectUrl>
+    <PackageTags>WPF, Manager, Utility, View, Exception Handling, Dialogs, ViewModel, Message display, Error handling, Dialog management </PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="View\MessageWindow.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="odeytech.productivitykit" Version="0.0.19" />
+    <PackageReference Include="OdeyTech.WPF.UIElements" Version="0.0.105" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="View\MessageWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>
