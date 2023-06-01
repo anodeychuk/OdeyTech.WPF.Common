@@ -27,7 +27,12 @@ namespace OdeyTech.WPF.Common.Utility
     /// Sets up exception handling for the given WPF application.
     /// </summary>
     /// <param name="application">The WPF application instance.</param>
+    /// <param name="serviceProvider">The service provider.</param>
     /// <example>
+    /// var services = new ServiceCollection();
+    /// services.AddSingleton<IViewManager, ViewManager>();
+    /// Application.Current.SetupExceptionHandling(serviceProvider);
+    /// </example>
     public static void SetupExceptionHandling(this Application application, IServiceProvider serviceProvider)
     {
       ServiceProvider = serviceProvider;
@@ -42,7 +47,8 @@ namespace OdeyTech.WPF.Common.Utility
     /// </summary>
     /// <param name="application">The WPF application instance.</param>
     /// <param name="args">The event arguments containing the unhandled exception information.</param>
-    private static void CurrentDomainOnUnhandledException(Application application, UnhandledExceptionEventArgs args) => UnhandledExceptionHandler(application, (Exception)args.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
+    private static void CurrentDomainOnUnhandledException(Application application, UnhandledExceptionEventArgs args)
+      => UnhandledExceptionHandler(application, (Exception)args.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
 
     /// <summary>
     /// Handles the unhandled exception event for the application's dispatcher.
