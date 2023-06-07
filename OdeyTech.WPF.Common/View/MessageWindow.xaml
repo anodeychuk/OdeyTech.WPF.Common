@@ -38,12 +38,12 @@
                 Grid.Row="1"
                 Height="200"
                 HorizontalAlignment="Center"
-                Visibility="{Binding ErrorMessageLabelVisible}">
+                Visibility="{Binding MessageLabelVisible}">
                 <Label.Content>
                     <AccessText
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="{Binding ErrorMessage, Mode=OneWay}"
+                        Text="{Binding Message, Mode=OneWay}"
                         TextWrapping="Wrap" />
                 </Label.Content>
             </Label>
@@ -52,10 +52,10 @@
                 Height="376"
                 VerticalContentAlignment="Top"
                 HorizontalScrollBarVisibility="Auto"
-                Text="{Binding ErrorMessage, Mode=OneWay}"
+                Text="{Binding Message, Mode=OneWay}"
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Visible"
-                Visibility="{Binding ErrorMessageTextBoxVisible}" />
+                Visibility="{Binding MessageTextBoxVisible}" />
             <Grid Grid.Row="2" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

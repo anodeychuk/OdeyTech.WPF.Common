@@ -25,7 +25,6 @@ namespace OdeyTech.WPF.Common.ViewModel
     private bool isOkButtonVisible;
     private bool isYesButtonVisible;
     private bool isNoButtonVisible;
-    private ButtonName clickedButton;
     private readonly ButtonName[] buttons;
 
     /// <summary>
@@ -62,7 +61,7 @@ namespace OdeyTech.WPF.Common.ViewModel
     public string Message
     {
       get => this.message;
-      private set => SetProperty(ref this.message, value, nameof(Message));
+      private set => SetProperty(ref this.message, value);
     }
 
     /// <summary>
@@ -77,7 +76,7 @@ namespace OdeyTech.WPF.Common.ViewModel
         {
           this.messageTextBoxVisible = value;
           OnPropertyChanged(nameof(MessageTextBoxVisible));
-          OnPropertyChanged(nameof(ErrorMessageLabelVisible));
+          OnPropertyChanged(nameof(MessageLabelVisible));
         }
       }
     }
@@ -85,7 +84,7 @@ namespace OdeyTech.WPF.Common.ViewModel
     /// <summary>
     /// Gets the visibility of the error message label.
     /// </summary>
-    public Visibility ErrorMessageLabelVisible => this.messageTextBoxVisible == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+    public Visibility MessageLabelVisible => this.messageTextBoxVisible == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
 
     /// <summary>
     /// Gets or sets the height of the window.
@@ -93,7 +92,7 @@ namespace OdeyTech.WPF.Common.ViewModel
     public int WindowHeight
     {
       get => this.windowHeight;
-      set => SetProperty(ref this.windowHeight, value, nameof(WindowHeight));
+      set => SetProperty(ref this.windowHeight, value);
     }
 
     /// <summary>
@@ -102,7 +101,7 @@ namespace OdeyTech.WPF.Common.ViewModel
     public ResizeMode WindowResizeMode
     {
       get => this.windowResizeMode;
-      private set => SetProperty(ref this.windowResizeMode, value, nameof(WindowResizeMode));
+      private set => SetProperty(ref this.windowResizeMode, value);
     }
 
     /// <summary>
@@ -112,17 +111,8 @@ namespace OdeyTech.WPF.Common.ViewModel
     [RelayCommand]
     public void ClickButton(ButtonName button)
     {
-      ClickedButton = button;
+      ResultButton = button;
       Close();
-    }
-
-    /// <summary>
-    /// Gets or sets the button that was clicked.
-    /// </summary>
-    public ButtonName ClickedButton
-    {
-      get => this.clickedButton;
-      private set => SetProperty(ref this.clickedButton, value);
     }
 
     /// <summary>
@@ -131,7 +121,7 @@ namespace OdeyTech.WPF.Common.ViewModel
     public bool IsOkButtonVisible
     {
       get => this.isOkButtonVisible;
-      private set => SetProperty(ref this.isOkButtonVisible, value, nameof(IsOkButtonVisible));
+      private set => SetProperty(ref this.isOkButtonVisible, value);
     }
 
     /// <summary>
@@ -140,7 +130,7 @@ namespace OdeyTech.WPF.Common.ViewModel
     public bool IsYesButtonVisible
     {
       get => this.isYesButtonVisible;
-      private set => SetProperty(ref this.isYesButtonVisible, value, nameof(IsYesButtonVisible));
+      private set => SetProperty(ref this.isYesButtonVisible, value);
     }
 
     /// <summary>
@@ -149,7 +139,7 @@ namespace OdeyTech.WPF.Common.ViewModel
     public bool IsNoButtonVisible
     {
       get => this.isNoButtonVisible;
-      private set => SetProperty(ref this.isNoButtonVisible, value, nameof(IsNoButtonVisible));
+      private set => SetProperty(ref this.isNoButtonVisible, value);
     }
 
     /// <summary>
