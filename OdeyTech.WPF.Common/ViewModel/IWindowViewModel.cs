@@ -10,19 +10,19 @@ using System.Windows;
 
 namespace OdeyTech.WPF.Common.ViewModel
 {
-  /// <summary>
-  /// Represents a view model for a window.
-  /// </summary>
-  public interface IWindowViewModel
-  {
     /// <summary>
-    /// Gets or sets the title of the window.
+    /// Represents a view model for a window.
     /// </summary>
-    string WindowTitle { get; }
+    public interface IWindowViewModel
+    {
+        /// <summary>
+        /// Gets or sets the title of the window.
+        /// </summary>
+        string WindowTitle { get; }
 
-    /// <summary>
-    /// Gets or sets the current window associated with the view model.
-    /// </summary>
-    Window CurrentWindow { get; set; }
-  }
+        /// <summary>
+        /// Gets or sets the current window associated with the view model.
+        /// </summary>
+        Window CurrentWindow { get; set; }
+    }
 }

@@ -7,7 +7,7 @@
     <Product>OdeyTech.WPF.Common</Product>
     <Copyright>Copyright © $(Company) 2023.</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <AssemblyVersion>0.0.174</AssemblyVersion>
+    <AssemblyVersion>0.0.176</AssemblyVersion>
     <Authors>$(Company)</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>Package provides a set of base classes that are essential for building views, view models in WPF applications. Additionally, the package includes a collection of utility functions that offer valuable assistance during WPF application development. By leveraging the functionalities provided by this package, developers can enhance their productivity and streamline the creation of robust and feature-rich WPF applications.</Description>

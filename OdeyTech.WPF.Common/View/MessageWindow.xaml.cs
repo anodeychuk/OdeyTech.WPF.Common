@@ -10,14 +10,14 @@ using System.Windows;
 
 namespace OdeyTech.WPF.Common.View
 {
-  /// <summary>
-  /// Interaction logic for ErrorWindow.xaml
-  /// </summary>
-  public partial class MessageWindow : Window
-  {
-    public MessageWindow()
+    /// <summary>
+    /// Interaction logic for MessageWindow.xaml
+    /// </summary>
+    public partial class MessageWindow : Window
     {
-      InitializeComponent();
+        public MessageWindow()
+        {
+            InitializeComponent();
+        }
     }
-  }
 }

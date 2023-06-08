@@ -10,58 +10,58 @@ using System.Windows;
 
 namespace OdeyTech.WPF.Common.Utility
 {
-  /// <summary>
-  /// Class for closing dialogs programmatically.
-  /// </summary>
-  public static class DialogCloser
-  {
     /// <summary>
-    /// Constant to force close the window.
+    /// Class for closing dialogs programmatically.
     /// </summary>
-    public const bool ForceClose = true;
-
-    /// <summary>
-    /// Dependency property for dialog result.
-    /// </summary>
-    public static readonly DependencyProperty DialogResultProperty =
-        DependencyProperty.RegisterAttached(
-            nameof(Window.DialogResult),
-            typeof(bool?),
-            typeof(DialogCloser),
-            new PropertyMetadata(DialogResultChanged));
-
-    /// <summary>
-    /// Handles the change event of the DialogResultProperty.
-    /// </summary>
-    /// <param name="d">The dependency object that had its property changed.</param>
-    /// <param name="e">Details about the property change.</param>
-    private static void DialogResultChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    public static class DialogCloser
     {
-      if (d is not Window window)
-      {
-        return;
-      }
+        /// <summary>
+        /// Constant to force close the window.
+        /// </summary>
+        public const bool ForceClose = true;
 
-      try
-      {
-        window.DialogResult = e.NewValue as bool?;
-        if (window.DialogResult == ForceClose)
+        /// <summary>
+        /// Dependency property for dialog result.
+        /// </summary>
+        public static readonly DependencyProperty DialogResultProperty =
+            DependencyProperty.RegisterAttached(
+                nameof(Window.DialogResult),
+                typeof(bool?),
+                typeof(DialogCloser),
+                new PropertyMetadata(DialogResultChanged));
+
+        /// <summary>
+        /// Sets the DialogResult for the target window.
+        /// </summary>
+        /// <param name="target">The target window.</param>
+        /// <param name="value">The DialogResult value.</param>
+        public static void SetDialogResult(Window target, bool? value) => target.SetValue(DialogResultProperty, value);
+
+        /// <summary>
+        /// Handles the change event of the DialogResultProperty.
+        /// </summary>
+        /// <param name="d">The dependency object that had its property changed.</param>
+        /// <param name="e">Details about the property change.</param>
+        private static void DialogResultChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-          window.Close();
-        }
-      }
-      catch
-      {
-        // In case setting DialogResult throws an exception (e.g., if the window was not shown modally), close the window directly.
-        window.Close();
-      }
-    }
+            if (d is not Window window)
+            {
+                return;
+            }
 
-    /// <summary>
-    /// Sets the DialogResult for the target window.
-    /// </summary>
-    /// <param name="target">The target window.</param>
-    /// <param name="value">The DialogResult value.</param>
-    public static void SetDialogResult(Window target, bool? value) => target.SetValue(DialogResultProperty, value);
-  }
+            try
+            {
+                window.DialogResult = e.NewValue as bool?;
+                if (window.DialogResult == ForceClose)
+                {
+                    window.Close();
+                }
+            }
+            catch
+            {
+                // In case setting DialogResult throws an exception (e.g., if the window was not shown modally), close the window directly.
+                window.Close();
+            }
+        }
+    }
 }
