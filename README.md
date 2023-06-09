@@ -1,10 +1,10 @@
 # OdeyTech.WPF.Common
 
-`OdeyTech.WPF.Common` is a library that provides common functionalities for WPF applications. It includes classes for managing dialogs, displaying messages, handling exceptions, and more.
+**OdeyTech.WPF.Common** is a library that provides common functionalities for WPF applications. It includes classes for managing dialogs, displaying messages, handling exceptions, and more.
 
 ## Features
 
-The `OdeyTech.WPF.Common` NuGet package provides the following features:
+The **OdeyTech.WPF.Common** NuGet package provides the following features:
 
 ### Manager
 - `ViewManager`: Represents a view manager responsible for displaying windows and dialogs in an application.
@@ -103,23 +103,29 @@ Application.Current.SetupExceptionHandling(serviceProvider);
 />    
 ~~~
 
+**Note:** An example of how to use **OdeyTech.WPF.Common** can be found in the [OdeyTech.WPF.Example.Hospital repository][Example].
+
 ## Getting Started
 
-To get started with `OdeyTech.WPF.Common`, follow these steps:
+To get started with **OdeyTech.WPF.Common**, follow these steps:
 
-1. Install the `OdeyTech.WPF.Common` NuGet package.
+1. Install the **OdeyTech.WPF.Common** NuGet package.
 2. Add references to the `OdeyTech.WPF.Common` namespace in your code files.
 3. Use the provided classes and utilities according to your application's requirements.
 
 ## Contributing
-We welcome contributions to `OdeyTech.WPF.Common`! Feel free to submit pull requests or raise issues to help us improve the library.
+
+We welcome contributions to **OdeyTech.WPF.Common**! Feel free to submit pull requests or raise issues to help us improve the library.
 
 ## License
-`OdeyTech.WPF.Common` is released under the [Non-Commercial License][LICENSE]. See the LICENSE file for more information.
+
+**OdeyTech.WPF.Common** is released under the [Non-Commercial License][LICENSE]. See the LICENSE file for more information.
 
 ## Stay in Touch
+
 For more information, updates, and future releases, follow me on [LinkedIn][LIn] I'd be happy to connect and discuss any questions or ideas you might have.
 
 [//]: #
    [LIn]: <https://www.linkedin.com/in/anodeychuk/>
    [LICENSE]: <https://github.com/anodeychuk/OdeyTech.WPF.Common/blob/main/LICENSE>
+   [Example]: <https://github.com/anodeychuk/OdeyTech.WPF.Example.Hospital>
