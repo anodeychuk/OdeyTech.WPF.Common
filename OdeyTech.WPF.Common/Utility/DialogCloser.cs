@@ -7,6 +7,7 @@
 // --------------------------------------------------------------------------
 
 using System.Windows;
+using OdeyTech.ProductivityKit;
 
 namespace OdeyTech.WPF.Common.Utility
 {
@@ -35,7 +36,11 @@ namespace OdeyTech.WPF.Common.Utility
         /// </summary>
         /// <param name="target">The target window.</param>
         /// <param name="value">The DialogResult value.</param>
-        public static void SetDialogResult(Window target, bool? value) => target.SetValue(DialogResultProperty, value);
+        public static void SetDialogResult(Window target, bool? value)
+        {
+            ThrowHelper.ThrowIfNull(target, nameof(target));
+            target.SetValue(DialogResultProperty, value);
+        }
 
         /// <summary>
         /// Handles the change event of the DialogResultProperty.

@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
+using OdeyTech.ProductivityKit;
+using OdeyTech.ProductivityKit.Extension;
 using OdeyTech.WPF.Common.Manager;
 
 namespace OdeyTech.WPF.Common.Utility
@@ -21,13 +23,14 @@ namespace OdeyTech.WPF.Common.Utility
     /// </summary>
     public static class ExceptionHandler
     {
-        private static IServiceProvider ServiceProvider;
+        private static IServiceProvider serviceProvider;
 
         /// <summary>
         /// Sets up exception handling for the given WPF application.
         /// </summary>
         /// <param name="application">The WPF application instance.</param>
         /// <param name="serviceProvider">The service provider.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="application"/> or <paramref name="serviceProvider"/> is null.</exception>
         /// <example>
         /// var services = new ServiceCollection();
         /// services.AddSingleton<IViewManager, ViewManager>();
@@ -35,7 +38,10 @@ namespace OdeyTech.WPF.Common.Utility
         /// </example>
         public static void SetupExceptionHandling(this Application application, IServiceProvider serviceProvider)
         {
-            ServiceProvider = serviceProvider;
+            ThrowHelper.ThrowIfNull(application, nameof(application));
+            ThrowHelper.ThrowIfNull(serviceProvider, nameof(serviceProvider));
+
+            ExceptionHandler.serviceProvider = serviceProvider;
             AppDomain.CurrentDomain.UnhandledException += (sender, args) => CurrentDomainOnUnhandledException(application, args);
             application.Dispatcher.UnhandledException += (sender, args) => DispatcherUnhandledException(application, args);
             application.DispatcherUnhandledException += (sender, args) => CurrentDispatcherUnhandledException(application, args);
@@ -89,24 +95,25 @@ namespace OdeyTech.WPF.Common.Utility
         /// <param name="application">The WPF application instance.</param>
         /// <param name="exception">The unhandled exception.</param>
         /// <param name="source">The source of the unhandled exception.</param>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="application"/> is null.</exception>
         private static void UnhandledExceptionHandler(Application application, Exception exception, string source)
         {
             var title = $"Exception source: {source}";
             try
             {
                 AssemblyName assemblyName = Assembly.GetExecutingAssembly().GetName();
-                title = string.Format("Unhandled exception in {0} v{1}\n\n{2}", assemblyName.Name, assemblyName.Version, title);
+                title = "Unhandled exception in {0} v{1}\n\n{2}".Format(assemblyName.Name, assemblyName.Version, title);
             }
             catch (Exception ex)
             {
-                title = "Exception in UnhandledExceptionHandler";
+                title = $"Exception in {nameof(UnhandledExceptionHandler)}";
                 exception = ex;
             }
             finally
             {
                 application.Dispatcher.Invoke(delegate
                 {
-                    ServiceProvider.GetService<IViewManager>().ShowError(title, exception);
+                    serviceProvider.GetService<IViewManager>().ShowError(title, exception);
                 });
             }
         }

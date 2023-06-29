@@ -22,13 +22,28 @@ namespace OdeyTech.WPF.Common.Manager
     /// </summary>
     public class ViewManager : IViewManager
     {
-        /// <inheritdoc/>
-        public void Show<T>(IWindowViewModel viewModel, Window parent = null) where T : Window, new() => CreateView<T>(viewModel, parent).Show();
+        private readonly IWindowFactory windowFactory;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewManager"/> class.
+        /// </summary>
+        public ViewManager()
+        {
+            this.windowFactory = new WindowFactory();
+        }
 
         /// <inheritdoc/>
-        public void ShowDialog<T>(IWindowViewModel viewModel, Window parent = null) where T : Window, new() => CreateView<T>(viewModel, parent).ShowDialog();
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="viewModel"/> is null.</exception>
+        public void Show<T>(IWindowViewModel viewModel, Window parent = null) where T : Window, new()
+            => CreateView<T>(viewModel, parent).Show();
 
         /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="viewModel"/> is null.</exception>
+        public void ShowDialog<T>(IWindowViewModel viewModel, Window parent = null) where T : Window, new()
+            => CreateView<T>(viewModel, parent).ShowDialog();
+
+        /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> or <paramref name="message"/> is null or empty.</exception>
         public void ShowError(string title, Exception exception, Window parent = null)
         {
             var message = "Title: {0}{1}".Format(title, GetExceptionMessage(exception, 0));
@@ -36,11 +51,23 @@ namespace OdeyTech.WPF.Common.Manager
         }
 
         /// <inheritdoc/>
-        public void ShowMessageView(string title, string message, Window parent = null) => ShowDialog<MessageWindow>(new MessageViewModel(title, message), parent);
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> or <paramref name="message"/> is null or empty.</exception>
+        public void ShowMessageView(string title, string message, Window parent = null)
+        {
+            ThrowHelper.ThrowIfNullOrEmpty(title, nameof(title));
+            ThrowHelper.ThrowIfNullOrEmpty(message, nameof(message));
+
+            ShowDialog<MessageWindow>(new MessageViewModel(title, message), parent);
+        }
 
         /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/>, <paramref name="message"/>, or <paramref name="buttons"/> is null or empty.</exception>
         public ButtonName ShowAskView(string title, string message, ButtonName[] buttons, Window parent = null)
         {
+            ThrowHelper.ThrowIfNullOrEmpty(title, nameof(title));
+            ThrowHelper.ThrowIfNullOrEmpty(message, nameof(message));
+            ThrowHelper.ThrowIfNull(buttons, nameof(buttons));
+
             var viewModel = new MessageViewModel(title, message, buttons);
             ShowDialog<MessageWindow>(viewModel, parent);
             return viewModel.ResultButton;
@@ -53,9 +80,12 @@ namespace OdeyTech.WPF.Common.Manager
         /// <param name="viewModel">The view model to associate with the window.</param>
         /// <param name="parent">The parent window, if any.</param>
         /// <returns>The created window instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="viewModel"/> is null.</exception>
         private T CreateView<T>(IWindowViewModel viewModel, Window parent = null) where T : Window, new()
         {
-            T window = Accessor.CreateInstance<T>();
+            ThrowHelper.ThrowIfNull(viewModel, nameof(viewModel));
+
+            T window = this.windowFactory.Create<T>();
             window.DataContext = viewModel;
             window.Owner = parent;
             viewModel.CurrentWindow = window;

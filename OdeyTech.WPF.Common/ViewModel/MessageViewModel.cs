@@ -6,9 +6,11 @@
 // </copyright>
 // --------------------------------------------------------------------------
 
+using System;
 using System.Linq;
 using System.Windows;
 using CommunityToolkit.Mvvm.Input;
+using OdeyTech.ProductivityKit;
 using OdeyTech.ProductivityKit.Enum;
 
 namespace OdeyTech.WPF.Common.ViewModel
@@ -32,9 +34,13 @@ namespace OdeyTech.WPF.Common.ViewModel
         /// </summary>
         /// <param name="title">The title of the message window.</param>
         /// <param name="message">The message to display.</param>
-        /// <param name="buttons">The buttons to display in the message window.</param>
+        /// <param name="buttons">The buttons to display in the message window. If not provided, defaults to a single OK button.</param>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="title"/> or <paramref name="message"/> is null or empty.</exception>
         public MessageViewModel(string title, string message, ButtonName[] buttons = null) : base()
         {
+            ThrowHelper.ThrowIfNullOrEmpty(title, nameof(title));
+            ThrowHelper.ThrowIfNullOrEmpty(message, nameof(message));
+
             WindowTitle = title;
             Message = message;
 
@@ -84,7 +90,10 @@ namespace OdeyTech.WPF.Common.ViewModel
         /// <summary>
         /// Gets the visibility of the error message label.
         /// </summary>
-        public Visibility MessageLabelVisible => this.messageTextBoxVisible == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+        public Visibility MessageLabelVisible
+            => this.messageTextBoxVisible == Visibility.Visible
+                ? Visibility.Hidden
+                : Visibility.Visible;
 
         /// <summary>
         /// Gets or sets the height of the window.

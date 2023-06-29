@@ -2,17 +2,18 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <LangVersion>9.0</LangVersion>
+    <Product>OdeyTech.WPF.Common</Product>
     <AssemblyTitle>OdeyTech.WPF.Common</AssemblyTitle>
     <Company>Andrii Odeychuk</Company>
-    <Product>OdeyTech.WPF.Common</Product>
+    <Authors>$(Company)</Authors>
     <Copyright>Copyright © $(Company) 2023.</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <AssemblyVersion>0.0.176</AssemblyVersion>
-    <Authors>$(Company)</Authors>
+    <AssemblyVersion>0.0.192</AssemblyVersion>
+    <Version>$(AssemblyVersion)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Package provides a set of base classes that are essential for building views, view models in WPF applications. Additionally, the package includes a collection of utility functions that offer valuable assistance during WPF application development. By leveraging the functionalities provided by this package, developers can enhance their productivity and streamline the creation of robust and feature-rich WPF applications.</Description>
     <RepositoryUrl>https://github.com/anodeychuk/OdeyTech.WPF.Common</RepositoryUrl>
-    <Version>$(AssemblyVersion)</Version>
     <PackageProjectUrl>https://github.com/anodeychuk/OdeyTech.WPF.Common</PackageProjectUrl>
     <PackageTags>WPF, Manager, Utility, View, Exception Handling, Dialogs, ViewModel, Message display, Error handling, Dialog management </PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -40,8 +41,8 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="odeytech.productivitykit" Version="0.0.19" />
-    <PackageReference Include="OdeyTech.WPF.UIElements" Version="0.0.105" />
+    <PackageReference Include="odeytech.productivitykit" Version="0.0.39" />
+    <PackageReference Include="OdeyTech.WPF.UIElements" Version="0.0.210" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
