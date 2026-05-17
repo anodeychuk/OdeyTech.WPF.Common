@@ -8,7 +8,7 @@
     <Authors>$(Company)</Authors>
     <Copyright>Copyright © $(Company) 2023.</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <AssemblyVersion>0.0.192</AssemblyVersion>
+    <AssemblyVersion>0.0.193</AssemblyVersion>
     <Version>$(AssemblyVersion)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -39,10 +39,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="odeytech.productivitykit" Version="0.0.39" />
-    <PackageReference Include="OdeyTech.WPF.UIElements" Version="0.0.210" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.8" />
+    <PackageReference Include="OdeyTech.ProductivityKit" Version="1.0.0.2" />
+    <PackageReference Include="OdeyTech.WPF.UIElements" Version="0.0.211" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />

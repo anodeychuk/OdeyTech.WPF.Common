@@ -38,8 +38,8 @@ namespace OdeyTech.WPF.Common.Utility
         /// </example>
         public static void SetupExceptionHandling(this Application application, IServiceProvider serviceProvider)
         {
-            ThrowHelper.ThrowIfNull(application, nameof(application));
-            ThrowHelper.ThrowIfNull(serviceProvider, nameof(serviceProvider));
+            Guard.ThrowIfNull(application, nameof(application));
+            Guard.ThrowIfNull(serviceProvider, nameof(serviceProvider));
 
             ExceptionHandler.serviceProvider = serviceProvider;
             AppDomain.CurrentDomain.UnhandledException += (sender, args) => CurrentDomainOnUnhandledException(application, args);

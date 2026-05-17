@@ -38,7 +38,7 @@ namespace OdeyTech.WPF.Common.Utility
         /// <param name="value">The DialogResult value.</param>
         public static void SetDialogResult(Window target, bool? value)
         {
-            ThrowHelper.ThrowIfNull(target, nameof(target));
+            Guard.ThrowIfNull(target, nameof(target));
             target.SetValue(DialogResultProperty, value);
         }
 

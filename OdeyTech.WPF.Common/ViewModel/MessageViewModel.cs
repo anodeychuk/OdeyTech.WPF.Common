@@ -38,8 +38,8 @@ namespace OdeyTech.WPF.Common.ViewModel
         /// <exception cref="ArgumentException">Thrown if <paramref name="title"/> or <paramref name="message"/> is null or empty.</exception>
         public MessageViewModel(string title, string message, ButtonName[] buttons = null) : base()
         {
-            ThrowHelper.ThrowIfNullOrEmpty(title, nameof(title));
-            ThrowHelper.ThrowIfNullOrEmpty(message, nameof(message));
+            Guard.ThrowIfNullOrEmpty(title, nameof(title));
+            Guard.ThrowIfNullOrEmpty(message, nameof(message));
 
             WindowTitle = title;
             Message = message;

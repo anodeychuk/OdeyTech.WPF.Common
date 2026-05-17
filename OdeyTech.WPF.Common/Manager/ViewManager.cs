@@ -54,8 +54,8 @@ namespace OdeyTech.WPF.Common.Manager
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> or <paramref name="message"/> is null or empty.</exception>
         public void ShowMessageView(string title, string message, Window parent = null)
         {
-            ThrowHelper.ThrowIfNullOrEmpty(title, nameof(title));
-            ThrowHelper.ThrowIfNullOrEmpty(message, nameof(message));
+            Guard.ThrowIfNullOrEmpty(title, nameof(title));
+            Guard.ThrowIfNullOrEmpty(message, nameof(message));
 
             ShowDialog<MessageWindow>(new MessageViewModel(title, message), parent);
         }
@@ -64,9 +64,9 @@ namespace OdeyTech.WPF.Common.Manager
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/>, <paramref name="message"/>, or <paramref name="buttons"/> is null or empty.</exception>
         public ButtonName ShowAskView(string title, string message, ButtonName[] buttons, Window parent = null)
         {
-            ThrowHelper.ThrowIfNullOrEmpty(title, nameof(title));
-            ThrowHelper.ThrowIfNullOrEmpty(message, nameof(message));
-            ThrowHelper.ThrowIfNull(buttons, nameof(buttons));
+            Guard.ThrowIfNullOrEmpty(title, nameof(title));
+            Guard.ThrowIfNullOrEmpty(message, nameof(message));
+            Guard.ThrowIfNull(buttons, nameof(buttons));
 
             var viewModel = new MessageViewModel(title, message, buttons);
             ShowDialog<MessageWindow>(viewModel, parent);
@@ -83,7 +83,7 @@ namespace OdeyTech.WPF.Common.Manager
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="viewModel"/> is null.</exception>
         private T CreateView<T>(IWindowViewModel viewModel, Window parent = null) where T : Window, new()
         {
-            ThrowHelper.ThrowIfNull(viewModel, nameof(viewModel));
+            Guard.ThrowIfNull(viewModel, nameof(viewModel));
 
             T window = this.windowFactory.Create<T>();
             window.DataContext = viewModel;
